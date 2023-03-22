@@ -39,7 +39,7 @@ resource "yandex_compute_instance" "vm-1" {
   }
 
   metadata = {
-    ssh-keys = "ubuntu:${file("~/.ssh/prod_key.pub")}"
+    ssh-keys = "ubuntu:${file("~/.ssh/id_rsa.pub")}"
   }
 
   scheduling_policy {
@@ -50,7 +50,7 @@ resource "yandex_compute_instance" "vm-1" {
   connection {
     type = "ssh"
     user = "ubuntu"
-    private_key = file("~/.ssh/prod_key")
+    private_key = file("~/.ssh/id_rsa")
     host = self.network_interface[0].nat_ip_address
   }
 

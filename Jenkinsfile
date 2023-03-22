@@ -34,9 +34,9 @@ pipeline {
             }
         }
 
-        stage('') {
+        stage('create environment on nodes') {
             steps {
-                sh 'ansible-playbook -i /tmp/test1 --user=ubuntu --private-key=~/.ssh/build_key ansbl/ansbl_build/build.yml'
+                sh 'ansible-playbook -i ~/ans_inv/hosts --user=ubuntu --private-key=~/.ssh/id_rsa Playbook.yml'
             }
         }
     }

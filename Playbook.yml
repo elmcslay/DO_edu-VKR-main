@@ -1,0 +1,42 @@
+---
+- name: build node state
+  hosts: build
+  become: yes
+
+  tasks:
+  - name: check git package
+    apt:
+      name: git
+      state: present
+  
+  - name: check jdk package
+    apt:
+      name: default-jdk
+      state: present
+
+  - name: check maven package
+    apt:
+      name: maven
+      state: present
+
+  - name: check docker package
+    apt:
+      name: docker.io
+      state: present   
+
+  - name: clone project repo
+    git:
+      repo: https://github.com/elmcslay/DO_edu-VKR-prjct.git
+      dest: /tmp/vkr_project
+      clone: yes
+
+  - name: check artifact is exists
+    stat:
+      path: /tmp/vkr_project/target/hello-1.0.war
+    register: result
+
+  - name: create artifact, if it does not exist
+    shell: mvn package
+    args:
+      chdir: /tmp/test-vkr
+    when: not result.stat.exists 
