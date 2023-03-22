@@ -36,8 +36,15 @@ pipeline {
 
         stage('create environment on nodes') {
             steps {
-                sh 'ansible-playbook -i ~/ans_inv/hosts --user=ubuntu --private-key=~/.ssh/id_rsa Playbook.yml'
+                sh 'ansible-playbook -i ~/ans_inv/hosts --user=ubuntu --private-key=~/.ssh/id_rsa Playbook1.yml'
             }
         }
+        
+        stage('make artifact and push to registry ') {
+            steps {
+                sh 'ansible-playbook -i ~/ans_inv/hosts --user=ubuntu --private-key=~/.ssh/id_rsa Playbook2.yml'
+            }
+        }
+
     }
 }

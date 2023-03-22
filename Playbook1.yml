@@ -38,5 +38,21 @@
   - name: create artifact, if it does not exist
     shell: mvn package
     args:
-      chdir: /tmp/test-vkr
+      chdir: /tmp/vkr_project
     when: not result.stat.exists 
+
+  - name: copy dockerhub secrets (kostyl)
+    copy:
+      src: ~/scrts_prjct/dr_pass.txt
+      dest: /tmp/vkr_project
+
+
+- name: prod node state
+  hosts: prod
+  become: yes
+
+  tasks:
+  - name: check docker package
+    apt:
+      name: docker.io
+      state: present
