@@ -20,10 +20,10 @@ resource "yandex_compute_instance" "vm-1" {
   hostname = "prod-vm"
   platform_id = "standard-v3"
 
- resources {
+  resources {
     cores = 2
     memory = 2
- }
+  }
 
   boot_disk {
     initialize_params {
