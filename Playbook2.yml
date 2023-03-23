@@ -22,7 +22,7 @@
     when: not result.stat.exists 
 
   - name: create docker image
-    shell: docker build -t vkr-img target/
+    shell: docker build -t vkr-img -f Dockerfile target/
     args:
       chdir: /tmp/vkr_project
 
