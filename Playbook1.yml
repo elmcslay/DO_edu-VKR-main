@@ -24,23 +24,6 @@
       name: docker.io
       state: present   
 
-  - name: clone project repo
-    git:
-      repo: https://github.com/elmcslay/DO_edu-VKR-prjct.git
-      dest: /tmp/vkr_project
-      clone: yes
-
-  - name: check artifact is exists
-    stat:
-      path: /tmp/vkr_project/target/hello-1.0.war
-    register: result
-
-  - name: create artifact, if it does not exist
-    shell: mvn package
-    args:
-      chdir: /tmp/vkr_project
-    when: not result.stat.exists 
-
   - name: copy dockerhub secrets (kostyl)
     copy:
       src: ~/scrts_prjct/dr_pass.txt

@@ -34,13 +34,13 @@ pipeline {
             }
         }
 
-        stage('create environment on nodes') {
+        stage('prepare environment on nodes') {
             steps {
                 sh 'ansible-playbook -i ~/ans_inv/hosts --user=ubuntu --private-key=~/.ssh/id_rsa Playbook1.yml'
             }
         }
         
-        stage('make artifact and push to registry ') {
+        stage('make artifact and push to registry on build node & run on prod node') {
             steps {
                 sh 'ansible-playbook -i ~/ans_inv/hosts --user=ubuntu --private-key=~/.ssh/id_rsa Playbook2.yml'
             }
