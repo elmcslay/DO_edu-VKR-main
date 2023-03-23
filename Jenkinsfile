@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('get project') {
             steps {
-                git 'https://github.com/elmcslay/DO_edu-VKR.git'
+                git 'https://github.com/elmcslay/DO_edu-VKR-main.git'
             }
         }
 
