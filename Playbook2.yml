@@ -5,8 +5,8 @@
 
   tasks:
   - name: create temp directory
-    file:
-      path: /tmp/vkr_project/
+    ansible.builtin.file:
+      path: /tmp/vkr_project
       state: directory
 
   - name: clone project repo
