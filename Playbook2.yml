@@ -6,7 +6,7 @@
   tasks:
   - name: create temp directory
     file:
-      path: /tmp/vkr_project
+      path: /tmp/vkr_project/
       state: directory
 
   - name: clone project repo
