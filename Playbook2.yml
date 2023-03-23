@@ -4,11 +4,6 @@
   become: yes
 
   tasks:
-  - name: create temp directory
-    ansible.builtin.file:
-      path: /tmp/vkr_project
-      state: directory
-
   - name: clone project repo
     git:
       repo: https://github.com/elmcslay/DO_edu-VKR-prjct.git

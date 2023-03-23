@@ -24,6 +24,11 @@
       name: docker.io
       state: present   
 
+  - name: create temp directory
+    file:
+      path: /tmp/vkr_project
+      state: directory
+
   - name: copy dockerhub secrets (kostyl)
     copy:
       src: ~/scrts_prjct/dr_pass.txt
