@@ -46,5 +46,10 @@ pipeline {
             }
         }
 
+        stage('destroy build node') {
+            steps {
+                sh 'tessraform -chdir=tf_configs/build_cfg/ destroy -auto-approve'
+            }
+        }
     }
 }
