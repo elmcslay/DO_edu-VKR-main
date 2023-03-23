@@ -1,0 +1,58 @@
+---
+- name: build node state
+  hosts: build
+  become: yes
+
+  tasks:
+  - name: chesk package installation
+    apt:
+      pkg:
+      - git
+      - default-jdk
+      - maven
+      - docker.io
+      state: present
+      update_cache: true
+  
+  - name: clone project repo
+    git:
+      repo: https://github.com/elmcslay/DO_edu-VKR-prjct.git
+      dest: /tmp/vkr_project
+      clone: yes
+
+  - name: check artifact is exists
+    stat:
+      path: /tmp/vkr_project/target/hello-1.0.war
+    register: result
+
+  - name: create artifact, if it does not exist
+    shell: mvn package
+    args:
+      chdir: /tmp/vkr_project
+    when: not result.stat.exists 
+
+  # - name: copy dockerhub secrets (kostyl)
+  #   copy:
+  #     src: ~/scrts_prjct/dr_pass.txt
+  #     dest: /tmp/vkr_project  
+
+  # - name: login on docker registry
+  #   shell: cat dr_pass.txt | docker login --username elmcslay --password-stdin
+  #   args:
+  #     chdir: /tmp/vkr_project
+
+
+
+
+
+
+
+- name: prod node state
+  hosts: prod
+  become: yes
+
+  tasks:
+  - name: check docker package
+    apt:
+      name: docker.io
+      state: present

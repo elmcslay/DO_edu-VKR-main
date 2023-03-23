@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('get project') {
             steps {
-                git branch: 'dev1', url: 'https://github.com/elmcslay/DO_edu-VKR-main.git'
+                git branch: 'dev2', url: 'https://github.com/elmcslay/DO_edu-VKR-main.git'
             }
         }
 
@@ -34,17 +34,17 @@ pipeline {
             }
         }
 
-        stage('prepare environment on nodes') {
+        stage('work with atrifacts on all nodes') {
             steps {
-                sh 'ansible-playbook -i ~/ans_inv/hosts --user=ubuntu --private-key=~/.ssh/id_rsa Playbook1.yml'
+                sh 'ansible-playbook -i ~/ans_inv/hosts --user=ubuntu --private-key=~/.ssh/id_rsa Playbook.yml'
             }
         }
         
-        stage('make artifact and push to registry on build node & run on prod node') {
-            steps {
-                sh 'ansible-playbook -i ~/ans_inv/hosts --user=ubuntu --private-key=~/.ssh/id_rsa Playbook2.yml'
-            }
-        }
+        // stage('make artifact and push to registry on build node & run on prod node') {
+        //     steps {
+        //         sh 'ansible-playbook -i ~/ans_inv/hosts --user=ubuntu --private-key=~/.ssh/id_rsa Playbook2.yml'
+        //     }
+        // }
 
         stage('destroy build node') {
             steps {
