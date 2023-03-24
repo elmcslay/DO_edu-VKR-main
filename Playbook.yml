@@ -31,6 +31,22 @@
       chdir: /tmp/vkr_project
     when: not result.stat.exists 
 
+  - name: login to dockerhub
+    community.docker.docker_login:
+      username: elmcslay
+      password: " {{ lookup('dr_pass', '~/scrts_prjct') }}"
+
+  - name: build and push docker image
+    community.docker.docker_image:
+      build: 
+        path: target/
+        dockerfile: Dockerfile
+      name: vkr-img
+      tag: 2.0
+      push: true
+      sourse: build
+
+
   # - name: copy dockerhub secrets (kostyl)
   #   copy:
   #     src: ~/scrts_prjct/dr_pass.txt
@@ -42,11 +58,6 @@
   #     chdir: /tmp/vkr_project
 
 
-
-
-
-
-
 - name: prod node state
   hosts: prod
   become: yes
@@ -56,3 +67,10 @@
     apt:
       name: docker.io
       state: present
+
+  - name: pull and run docker image
+    community.docker.docker_container:
+      name: vkr-cont
+      image: elmcslay/vkr-img:2.0
+      ports:
+      - "8080:8080"
