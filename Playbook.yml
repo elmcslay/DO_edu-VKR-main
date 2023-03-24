@@ -54,8 +54,8 @@
   - name: build and push docker image
     community.docker.docker_image:
       build: 
-        path: /tmp/vkr_project/target
-        dockerfile: Dockerfile
+        path: /tmp/vkr_project
+      #  dockerfile: /tmp/vkr_project/Dockerfile
       name: vkr-img
       tag: 2.0
       push: true
