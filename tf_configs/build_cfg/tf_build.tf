@@ -56,7 +56,7 @@ resource "yandex_compute_instance" "vm-1" {
 
   provisioner "remote-exec" {
     inline = [
-      "sudo apt update && sudo apt install python3 -y",
+      "sudo apt update && sudo apt install python3 python3-pip -y",
       "sudo pip install docker"
     ]
   }
