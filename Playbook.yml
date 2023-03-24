@@ -4,16 +4,21 @@
   become: yes
 
   tasks:
-  - name: chesk package installation
+  - name: check package installation
     apt:
       pkg:
       - git
       - default-jdk
       - maven
       - docker.io
+      - python3-pip
       state: present
       update_cache: true
   
+  - name: install docker python package
+    pip:
+      name: docker
+
   - name: clone project repo
     git:
       repo: https://github.com/elmcslay/DO_edu-VKR-prjct.git
