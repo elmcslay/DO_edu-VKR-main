@@ -54,7 +54,7 @@
       name: vkr-img
       tag: 2.0
       push: true
-      sourse: build
+      source: build
 
 
   # - name: copy dockerhub secrets (kostyl)
