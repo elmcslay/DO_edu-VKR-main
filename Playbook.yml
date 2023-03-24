@@ -54,7 +54,7 @@
   - name: build and push docker image
     community.docker.docker_image:
       build: 
-        path: target/
+        path: /tmp/vkr_project/target
         dockerfile: Dockerfile
       name: vkr-img
       tag: 2.0
@@ -78,10 +78,17 @@
   become: yes
 
   tasks:
-  - name: check docker package
+  - name: check package installation
     apt:
-      name: docker.io
+      pkg:
+      - docker.io
+      - python3-pip
       state: present
+      update_cache: true
+
+  - name: install docker python package
+    pip:
+      name: docker
 
   - name: pull and run docker image
     community.docker.docker_container:
