@@ -38,11 +38,11 @@
 
   - name: copy dockerhub secrets (kostyl)
     copy:
-      src: ~/scrts_prjct/dr_pass.txt
+      src: ~/scrts_prjct/dr_pass
       dest: /tmp/vkr_project
 
   - name: login on docker registry
-    shell: cat dr_pass.txt | docker login --username elmcslay --password-stdin
+    shell: cat dr_pass | docker login --username elmcslay --password-stdin
     args:
       chdir: /tmp/vkr_project
 
