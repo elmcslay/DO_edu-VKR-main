@@ -57,6 +57,7 @@
         path: /tmp/vkr_project
       #  dockerfile: /tmp/vkr_project/Dockerfile
       name: vkr-img
+      repository: elmcslay/vkr-img
       tag: 2.0
       push: true
       source: build
