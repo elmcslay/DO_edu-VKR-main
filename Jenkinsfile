@@ -40,12 +40,6 @@ pipeline {
             }
         }
         
-        // stage('make artifact and push to registry on build node & run on prod node') {
-        //     steps {
-        //         sh 'ansible-playbook -i ~/ans_inv/hosts --user=ubuntu --private-key=~/.ssh/id_rsa Playbook2.yml'
-        //     }
-        // }
-
         stage('destroy build node') {
             steps {
                 sh 'terraform -chdir=tf_configs/build_cfg/ destroy -auto-approve'

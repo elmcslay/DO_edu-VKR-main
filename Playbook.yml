@@ -55,23 +55,11 @@
     community.docker.docker_image:
       build: 
         path: /tmp/vkr_project
-      #  dockerfile: /tmp/vkr_project/Dockerfile
       name: vkr-img
       repository: elmcslay/vkr-img
       tag: 2.0
       push: true
       source: build
-
-
-  # - name: copy dockerhub secrets (kostyl)
-  #   copy:
-  #     src: ~/scrts_prjct/dr_pass.txt
-  #     dest: /tmp/vkr_project  
-
-  # - name: login on docker registry
-  #   shell: cat dr_pass.txt | docker login --username elmcslay --password-stdin
-  #   args:
-  #     chdir: /tmp/vkr_project
 
 
 - name: prod node state
