@@ -31,10 +31,20 @@
       chdir: /tmp/vkr_project
     when: not result.stat.exists 
 
-  - name: login to dockerhub
-    community.docker.docker_login:
-      username: elmcslay
-      password: " {{ lookup('dr_pass', '~/scrts_prjct') }}"
+  # - name: login to dockerhub
+  #   community.docker.docker_login:
+  #     username: elmcslay
+  #     password: " {{ lookup('dr_pass', '~/scrts_prjct') }}"
+
+  - name: copy dockerhub secrets (kostyl)
+    copy:
+      src: ~/scrts_prjct/dr_pass.txt
+      dest: /tmp/vkr_project
+
+  - name: login on docker registry
+    shell: cat dr_pass.txt | docker login --username elmcslay --password-stdin
+    args:
+      chdir: /tmp/vkr_project
 
   - name: build and push docker image
     community.docker.docker_image:
