@@ -4,6 +4,14 @@ final-версия
 
 Сопроводительная записка.
 
+Проект, который используется в работе:
+https://github.com/elmcslay/DO_edu-VKR-prjct.git
+
+Исходник проекта:
+https://github.com/boxfuse/boxfuse-sample-java-war-hello.git
+
+К исходному проекту был добавлен Dockerfile.
+
 На мастер-ноде на подготовительном этапе настроено следующее окружение:
 
 1) установлен и настроен Jenkins
