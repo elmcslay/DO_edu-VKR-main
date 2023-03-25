@@ -8,12 +8,6 @@ pipeline {
             }
         }
 
-        stage('generate ssh-key') {
-            steps {
-                sh 'ssh-keygen -f ~/.ssh/tmp-key -N "" '
-            }
-        }    
-
         stage('initialize tf & plan build node') {
             steps {
                 sh 'terraform -chdir=tf_configs/build_cfg/ init'
@@ -42,7 +36,7 @@ pipeline {
 
         stage('work with atrifacts on all nodes') {
             steps {
-                sh 'ansible-playbook -i ~/ans_inv/hosts --user=ubuntu --private-key=~/.ssh/tmp-key Playbook.yml'
+                sh 'ansible-playbook -i ~/ans_inv/hosts --user=ubuntu --private-key=~/.ssh/id_rsa Playbook.yml'
             }
         }
         
