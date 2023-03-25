@@ -10,7 +10,7 @@ pipeline {
 
         stage('generate ssh-key') {
             steps {
-                sh 'ssh-keygen -f ~/.ssh/tmp-key -N '''
+                sh 'ssh-keygen -f ~/.ssh/tmp-key -N "" '
             }
         }    
 
